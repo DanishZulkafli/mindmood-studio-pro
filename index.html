@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>MindMood Studio</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app">
+    <section class="hero">
+      <div>
+        <span class="eyebrow">Interactive Wellness Project</span>
+        <h1>MindMood Studio</h1>
+        <p>
+          Track your mood, write short reflections, log self-care activities,
+          and receive AI-style wellbeing suggestions based on your emotional pattern.
+        </p>
+
+        <div class="hero-actions">
+          <button onclick="scrollToJournal()">Add Mood Entry</button>
+          <button class="ghost" onclick="exportCSV()">Export CSV</button>
+          <button class="danger" onclick="resetData()">Reset Data</button>
+        </div>
+      </div>
+
+      <div class="mood-orb">
+        <span>Today’s Mood</span>
+        <h2 id="latestMood">Not logged</h2>
+        <p id="latestMoodScore">Score: 0/10</p>
+      </div>
+    </section>
+
+    <section class="stats-grid">
+      <div class="stat-card">
+        <span>Total Entries</span>
+        <strong id="totalEntries">0</strong>
+      </div>
+
+      <div class="stat-card">
+        <span>Average Mood</span>
+        <strong id="averageMood">0/10</strong>
+      </div>
+
+      <div class="stat-card">
+        <span>Best Mood</span>
+        <strong id="bestMood">0/10</strong>
+      </div>
+
+      <div class="stat-card">
+        <span>Self-Care Actions</span>
+        <strong id="selfCareCount">0</strong>
+      </div>
+    </section>
+
+    <section class="layout">
+      <div class="panel" id="journalForm">
+        <h2>New Mood Entry</h2>
+
+        <label for="mood">How do you feel?</label>
+        <select id="mood">
+          <option>Happy</option>
+          <option>Calm</option>
+          <option>Motivated</option>
+          <option>Tired</option>
+          <option>Stressed</option>
+          <option>Anxious</option>
+          <option>Sad</option>
+          <option>Angry</option>
+        </select>
+
+        <label for="score">Mood Score</label>
+        <input id="score" type="range" min="1" max="10" value="5" oninput="updateScoreLabel()" />
+        <div class="score-preview">Current score: <strong id="scoreLabel">5</strong>/10</div>
+
+        <label for="note">Reflection Note</label>
+        <textarea id="note" placeholder="Write what happened today, how you feel, or what you learned..."></textarea>
+
+        <label>Self-Care Activities</label>
+        <div class="check-grid">
+          <label><input type="checkbox" value="Drank enough water" /> Water</label>
+          <label><input type="checkbox" value="Had enough rest" /> Rest</label>
+          <label><input type="checkbox" value="Did exercise" /> Exercise</label>
+          <label><input type="checkbox" value="Talked to someone" /> Talk</label>
+          <label><input type="checkbox" value="Reduced screen time" /> Less screen</label>
+          <label><input type="checkbox" value="Practiced gratitude" /> Gratitude</label>
+        </div>
+
+        <button onclick="addEntry()">Save Mood Entry</button>
+        <button class="secondary" onclick="loadDemoData()">Load Demo Data</button>
+      </div>
+
+      <div class="panel">
+        <h2>AI-Style Wellness Insight</h2>
+
+        <div class="insight-box">
+          <h3 id="insightTitle">No insight yet</h3>
+          <p id="insightText">
+            Add your first mood entry to receive a personalized wellness suggestion.
+          </p>
+        </div>
+
+        <h3>Mood Breakdown</h3>
+        <div id="moodBreakdown" class="breakdown">
+          <p class="muted">No mood data yet.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="history-section">
+      <div class="history-header">
+        <div>
+          <h2>Mood Journal History</h2>
+          <p>Search, filter, review, and manage your mood entries.</p>
+        </div>
+
+        <div class="filters">
+          <input id="searchInput" type="text" placeholder="Search notes..." oninput="renderApp()" />
+
+          <select id="filterMood" onchange="renderApp()">
+            <option>All</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="historyList" class="entry-grid">
+        <div class="empty-box wide">
+          <h3>No entries yet</h3>
+          <p>Add your first mood entry to start tracking your wellbeing pattern.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
