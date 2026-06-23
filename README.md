@@ -6,7 +6,7 @@ This project is built using HTML, CSS, JavaScript, and LocalStorage. It can be d
 
 ## Live Demo
 
-Live project: https://danishzulkafli.github.io/mindmood-studio/
+Live project: https://danishzulkafli.github.io/mindmood-studio-pro/
 
 ## Features
 
